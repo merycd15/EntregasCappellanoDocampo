@@ -30,21 +30,23 @@ public class SeleniumTestLaptop {
         WebElement laptops = driver.findElement(By.linkText("Laptops"));
         //Una vez que carga el sitio, le doy click al elemento indicado
         laptops.click();
+
+        //Una vez que carga el sitio, le doy click al elemento indicado
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Sony vaio i5"))).click();
+
+
         //Le agrego un wait para darle tiempo a cargar el sitio
-        String primerProductoSonyVaio = driver.findElement(By.linkText("Sony vaio i5")).getText();
+        String primerProductoSonyVaio = driver.findElement(By.cssSelector("h2.name")).getText();
         //Evalúo que el nombre es el correcto
         assertEquals(primerProductoSonyVaio,"Sony vaio i5");
 
         //Obtengo el precio del primer producto
-        String precioVaio = driver.findElement(By.xpath("(//h5[contains(text(),'$790')])[1]")).getText();
+        String precioVaio = driver.findElement(By.cssSelector("h3.price-container")).getText();
         //Muestro en consola para verificar que se carga bien
         System.out.println(precioVaio);
         //Evalúo que el precio es el correcto
-        assertEquals(precioVaio,"$790");
+        assertEquals(precioVaio,"$790 *includes tax");
 
-        //Una vez que carga el sitio, le doy click al elemento indicado
-        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Sony vaio i5"))).click();
-        //primerProductoSonyVaio.click();
 
         //Le agrego un wait para darle tiempo a cargar el sitio
         WebElement primerProductoSonyVaioAddToCart = driver.findElement(By.linkText("Add to cart"));
